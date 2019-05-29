@@ -5,7 +5,9 @@ import { AuthUserContext } from '../Session'
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
-    {authUser => (authUser ? <SignedInLinks /> : <SignedOutLinks />)}
+    {authUser => {
+      return authUser ? <SignedInLinks /> : <SignedOutLinks />
+    }}
   </AuthUserContext.Consumer>
 )
 

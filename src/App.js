@@ -10,7 +10,8 @@ import Landing from './components/Landing'
 import Account from './components/Account'
 import { withAuthentication } from './Session'
 
-const App = () => {
+const App = props => {
+  console.log('App: ', props)
   return (
     <Router>
       <div>

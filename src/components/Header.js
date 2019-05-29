@@ -1,26 +1,37 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import SignOutButton from './SignOut'
+import { AuthUserContext } from '../Session'
 
-function Header() {
-  return (
-    <ul>
-      <li>
-        <Link to='/'>Home</Link>
-      </li>
-      <li>
-        <Link to='/about'>About</Link>
-      </li>
-      <li>
-        <Link to='/topics'>Topics</Link>
-      </li>
-      <li>
-        <Link to='/signin'>Sign In</Link>
-      </li>
-      <li>
-        <Link to='/signup'>Sign Up</Link>
-      </li>
-    </ul>
-  )
-}
+const Navigation = () => (
+  <AuthUserContext.Consumer>
+    {authUser => (authUser ? <SignedInLinks /> : <SignedOutLinks />)}
+  </AuthUserContext.Consumer>
+)
 
-export default Header
+const SignedInLinks = () => (
+  <ul>
+    <li>
+      <Link to={'/home'}>Home</Link>
+    </li>
+    <li>
+      <Link to={'/account'}>Account</Link>
+    </li>
+    <li>
+      <SignOutButton />
+    </li>
+  </ul>
+)
+
+const SignedOutLinks = () => (
+  <ul>
+    <li>
+      <Link to={'/landing'}>Landing</Link>
+    </li>
+    <li>
+      <Link to={'/signin'}>Sign In</Link>
+    </li>
+  </ul>
+)
+
+export default Navigation

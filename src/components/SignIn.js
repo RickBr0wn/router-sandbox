@@ -13,7 +13,7 @@ const SignInPage = () => (
   </div>
 )
 
-const INITIAL_STATE = {
+const initialState = {
   email: '',
   password: '',
   error: null
@@ -23,7 +23,7 @@ class SignInFormBase extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { ...INITIAL_STATE }
+    this.state = { ...initialState }
   }
 
   onSubmit = event => {
@@ -32,7 +32,7 @@ class SignInFormBase extends Component {
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
-        this.setState({ ...INITIAL_STATE })
+        this.setState({ ...initialState })
         this.props.history.push('/home')
       })
       .catch(error => {

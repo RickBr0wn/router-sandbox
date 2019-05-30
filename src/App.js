@@ -5,7 +5,7 @@ import Header from './components/Header'
 import Topics from './components/Topics'
 import About from './components/About'
 import Home from './components/Home'
-import SignIn from './components/SignIn'
+import SignInPage from './components/SignInPage'
 import SignUp from './components/SignUp'
 import Landing from './components/Landing'
 import Account from './components/Account'
@@ -23,7 +23,7 @@ const App = () => {
         <Route path='/home' component={Home} />
         <Route path='/about' component={About} />
         <Route path='/topics' component={Topics} />
-        <Route path='/signin' component={SignIn} />
+        <Route path='/signin' component={SignInPage} />
         <Route path='/signup' component={SignUp} />
         <Route path='/account' component={Account} />
       </div>

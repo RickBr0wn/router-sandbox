@@ -1,16 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SignOutButton from './SignOut'
-import { AuthUserContext } from '../Session'
 import styled from 'styled-components'
+import { withFireBase } from '../Firebase'
 
-const Navigation = () => (
-  <AuthUserContext.Consumer>
-    {authUser => {
-      return authUser ? <SignedInLinks /> : <SignedOutLinks />
-    }}
-  </AuthUserContext.Consumer>
-)
+const Navigation = ({ firebase }) => {
+  return firebase.getCurrentUsername() ? (
+    <SignedInLinks name={firebase.auth.currentUser.displayName} />
+  ) : (
+    <SignedOutLinks name={null} />
+  )
+}
 
 const StyledNavBar = styled.nav`
   background: #333;
@@ -36,11 +36,11 @@ const StyledNavBar = styled.nav`
   }
 `
 
-const SignedInLinks = () => (
+const SignedInLinks = ({ name }) => (
   <StyledNavBar>
     <ul>
       <div>
-        <li>Rick Brown</li>
+        <li>{name ? name : '.'}</li>
       </div>
       <div className='right-hand-links'>
         <li>
@@ -57,11 +57,11 @@ const SignedInLinks = () => (
   </StyledNavBar>
 )
 
-const SignedOutLinks = () => (
+const SignedOutLinks = ({ name }) => (
   <StyledNavBar>
     <ul>
       <div>
-        <li>Rick Brown</li>
+        <li>{name ? name : '.'}</li>
       </div>
       <div className='right-hand-links'>
         <li>
@@ -72,4 +72,4 @@ const SignedOutLinks = () => (
   </StyledNavBar>
 )
 
-export default Navigation
+export default withFireBase(Navigation)

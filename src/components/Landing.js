@@ -1,7 +1,8 @@
 import React from 'react'
+import { withFireBase } from '../Firebase'
 
-function Landing() {
+function Landing(props) {
   return <h2>Landing</h2>
 }
 
-export default Landing
+export default withFireBase(Landing)

@@ -64,15 +64,15 @@ class Firebase {
   //   return console.log('Not logged in.')
   // }
 
-  async getCurrentUserQuote() {
-    return null
-  }
+  // getCurrentUserQuote = async () => {
+  //   return null
+  // }
 
-  async getAllDocuments() {
+  getAllDocuments = async () => {
     let arr = []
     if (this.auth.currentUser) {
       const documentRef = this.db.collection('react-hooks-firebase')
-      const query = documentRef
+      await documentRef
         .get()
         .then(snapshot => {
           if (snapshot.empty) {
@@ -91,7 +91,7 @@ class Firebase {
     return arr
   }
 
-  async getSingleDocument(documentID) {
+  getSingleDocument = async documentID => {
     if (this.auth.currentUser) {
       const documentRef = this.db
         .collection('react-hooks-firebase')

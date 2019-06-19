@@ -1,8 +1,9 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { withFireBase } from '../Firebase'
+import { compose } from 'recompose'
 
-const SignOutButton = ({ firebase, history }) => (
+const _SignOutButton = ({ firebase, history }) => (
   <div
     style={{ cursor: 'pointer' }}
     type='button'
@@ -14,4 +15,9 @@ const SignOutButton = ({ firebase, history }) => (
   </div>
 )
 
-export default withRouter(withFireBase(SignOutButton))
+const SignOutButton = compose(
+  withFireBase,
+  withRouter
+)(_SignOutButton)
+
+export default SignOutButton

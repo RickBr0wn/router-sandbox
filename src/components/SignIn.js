@@ -32,9 +32,9 @@ class SignInFormBase extends Component {
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
-        this.setState({ ...initialState }, () =>
-          this.props.history.push('/home')
-        )
+        this.setState({ ...initialState }, () => {
+          window.setTimeout(this.props.history.push('/home'), 5000)
+        })
       })
       .catch(error => {
         this.setState({ error })

@@ -32,41 +32,40 @@ class Firebase {
 
   doPasswordUpdate = password => this.auth.currentUser.updatePassword(password)
 
-  // doGetDatabaseData = async () => {
-  //   const data = await this.db.doc(`react-hooks-firebase/test`).get()
-  //   return data.get('data')
-  // }
+  doGetDatabaseData = async () => {
+    const data = await this.db.doc(`react-hooks-firebase/test`).get()
+    return data.get('data')
+  }
 
-  addQuote(quote) {
+  addDocument(newDocument) {
     if (!this.auth.currentUser) {
       return alert('Not authorized')
     }
 
-    return null
-    // return this.db
-    //   .doc(`react-hooks-firebase/${this.auth.currentUser.uid}`)
-    //   .set({
-    //     quote
-    //   })
+    return this.db
+      .doc(`react-hooks-firebase/${this.auth.currentUser.uid}`)
+      .set({
+        newDocument
+      })
   }
 
   getCurrentUsername() {
     return this.auth.currentUser && this.auth.currentUser.displayName
   }
 
-  // async getCurrentUserQuote() {
-  //   if (this.auth.currentUser) {
-  //     const quote = await this.db
-  //       .doc(`react-hooks-firebase/${this.auth.currentUser.uid}`)
-  //       .get()
-  //     return quote.get('quote')
-  //   }
-  //   return console.log('Not logged in.')
-  // }
+  async getCurrentUserQuote() {
+    if (this.auth.currentUser) {
+      const quote = await this.db
+        .doc(`react-hooks-firebase/${this.auth.currentUser.uid}`)
+        .get()
+      return quote.get('quote')
+    }
+    return console.log('Not logged in.')
+  }
 
-  // getCurrentUserQuote = async () => {
-  //   return null
-  // }
+  getCurrentUserQuote = async () => {
+    return null
+  }
 
   getAllDocuments = async () => {
     let arr = []
@@ -76,8 +75,7 @@ class Firebase {
         .get()
         .then(snapshot => {
           if (snapshot.empty) {
-            console.log('No matching documents.')
-            return
+            throw new Error('No matching documents.')
           }
           snapshot.forEach((doc, index) => {
             arr.push(doc.data())
@@ -85,7 +83,7 @@ class Firebase {
           return arr
         })
         .catch(err => {
-          console.log('Error getting documents', err)
+          throw new Error('Error getting documents', err)
         })
     }
     return arr

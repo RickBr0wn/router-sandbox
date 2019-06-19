@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import uuid from 'react-uuid'
 
 import { withFireBase } from '../Firebase'
 import { withRouter } from 'react-router-dom'
 import { withStore } from '../Store'
 import { compose } from 'recompose'
+
+import Calendar from './Calendar/'
 
 function _Home(props) {
   console.log(props)
@@ -22,7 +24,12 @@ function _Home(props) {
       {isLoading ? (
         <div>Loading ...</div>
       ) : (
-        <ul>{docs && docs.map(item => <li key={uuid()}>{item.quote}</li>)}</ul>
+        <>
+          <Calendar />
+          <ul>
+            {docs && docs.map(item => <li key={uuid()}>{item.quote}</li>)}
+          </ul>
+        </>
       )}
     </>
   )

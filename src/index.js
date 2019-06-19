@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import FireBase, { FireBaseContext } from './Firebase'
+import './index.css'
 
 ReactDOM.render(
   <FireBaseContext.Provider value={new FireBase()}>

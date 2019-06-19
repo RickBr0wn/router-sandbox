@@ -1,0 +1,29 @@
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  background: #eee;
+}
+
+.calendar-header {
+  text-align: center;
+  padding: 10px;
+}
+
+.day {
+  text-align: center;
+  padding: 8px;
+}
+
+.current-day {
+  background: rgb(25, 22, 233);
+  color: #fff;
+}
+
+th {
+  padding: 10px;
+}
+
+.empty-slot {
+}

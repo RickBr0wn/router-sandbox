@@ -204,7 +204,7 @@ export default class Calendar extends React.Component {
     const trElems = rows.map((d, i) => {
       return <tr key={Math.random()}>{d}</tr>
     })
-
+    console.log('props', this.props)
     return (
       <div className='calendar-container'>
         <table className='calendar'>
@@ -232,10 +232,16 @@ export default class Calendar extends React.Component {
             </tr>
           </thead>
           <tbody>
+            <tr style={{ color: '#fff' }} />
+
             <tr>{weekdays}</tr>
             {trElems}
           </tbody>
         </table>
+        {/* <code>
+          <pre>PROPS: {JSON.stringify(this.props, null, 2)}</pre>
+          <pre>STATE: {JSON.stringify(this.state, null, 2)}</pre>
+        </code> */}
       </div>
     )
   }

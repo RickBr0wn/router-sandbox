@@ -2,8 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 500px;
+  padding: 60px 40px;
   background: #eee;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .calendar-header {
@@ -14,6 +18,18 @@
 .day {
   text-align: center;
   padding: 8px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+}
+
+.day:hover {
+  background: rgb(0, 0, 255, 0.1);
+}
+
+.prev {
+  cursor: pointer;
 }
 
 .current-day {

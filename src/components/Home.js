@@ -9,8 +9,7 @@ import { compose } from 'recompose'
 import Calendar from './Calendar/'
 
 function _Home(props) {
-  console.log(props)
-  const { firebase, store, history } = props
+  const { firebase, store, dispatch, history } = props
   const { docs, isLoading, isError } = store
 
   if (!firebase.getCurrentUsername()) {
@@ -25,7 +24,7 @@ function _Home(props) {
         <div>Loading ...</div>
       ) : (
         <>
-          <Calendar />
+          <Calendar store={store} dispatch={dispatch} />
           <ul>
             {docs && docs.map(item => <li key={uuid()}>{item.quote}</li>)}
           </ul>
